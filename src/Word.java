@@ -5,9 +5,18 @@ public class Word {
 	private final String word;
 	private final String[] syllables;
 
+	public Word(String word) {
+		this.word = word;
+		this.syllables = findSyllables();
+	}
+
 	public Word(String word, String[] syllables) {
 		this.word = word;
 		this.syllables = syllables;
+	}
+
+	private String[] findSyllables() {
+		return null;
 	}
 
 	public String getWord() {
