@@ -4,11 +4,11 @@ public class Word {
 	private final String word;
 
 	public Word(String word) {
-		this.word = word.toLowerCase();
+		this.word = word.toLowerCase().trim();
 	}
 
 	public Word(Word word) {
-		this.word = word.getWord().toLowerCase();
+		this.word = word.getWord().toLowerCase().trim();
 	}
 
 	public String getWord() {
