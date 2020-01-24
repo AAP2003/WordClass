@@ -27,9 +27,24 @@ public class Word {
 					|| (word.length() >= 4 && word.substring(word.length() - 3).contentEquals("ier")))
 				syllables++;
 
-			String lengthMinus2 = word.substring(word.length() - 2);
-			char charAtLengthMinus3 = word.charAt(word.length() - 3);
-			boolean lengthMinus4EqualsConstant = CVword.charAt(word.length() - 4) == 'C';
+			String lengthMinus2;
+			if (word.length() >= 2) {
+				lengthMinus2 = word.substring(word.length() - 2);
+			} else {
+				lengthMinus2 = "";
+			}
+			char charAtLengthMinus3;
+			if (word.length()>= 3) {
+				charAtLengthMinus3 = word.charAt(word.length() - 3);
+			} else {
+				charAtLengthMinus3 = ' ';
+			}
+			boolean lengthMinus4EqualsConstant;
+			if (word.length() >= 4) {
+				lengthMinus4EqualsConstant = CVword.charAt(word.length() - 4) == 'C';
+			} else {
+				lengthMinus4EqualsConstant = false;
+			}
 			if (word.length() > 3
 					&& lengthMinus2.contentEquals("ed")) {
 				syllables--;
