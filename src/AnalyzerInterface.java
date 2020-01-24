@@ -27,7 +27,10 @@ public class AnalyzerInterface {
 			while (in.hasNext()) {
 				String temp[] = in.nextLine().split(" ");
 				Word word = new Word(temp[0]);
-				System.out.println("Error: " + (Integer.parseInt(temp[1]) - word.getNumSyllables()) + "  Word: " + word.getWord());
+				int error = Integer.parseInt(temp[1]) - word.getNumSyllables();
+				if (error != 0) {
+					System.out.println("Error: " + error + "  Word: " + word.getWord());
+				}
 				//System.out.println("Predicted: " + word.getNumSyllables());
 				//System.out.println("Actual: " + temp[1] + "\n");
 			}
