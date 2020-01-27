@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/WordAnalyzer.iml" filepath="$PROJECT_DIR$/WordAnalyzer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WordClass.iml" filepath="$PROJECT_DIR$/WordClass.iml" />
     </modules>
   </component>
 </project>

@@ -98,6 +98,10 @@ public class Word {
 		}
 	}
 
+	public boolean patternMatch(String pattern, int startIndex, int length) {
+		return false;
+	}
+
 	public String toString() {
 		return "Word: " + word;
 	}

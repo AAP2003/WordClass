@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6fe2f77b-7ab0-4810-b981-dbbb14ec6482" name="Default Changelist" comment="" />
+    <list default="true" id="6fe2f77b-7ab0-4810-b981-dbbb14ec6482" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Word.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Word.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,13 +40,13 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\aarya\OneDrive\Documents\AAP-CP\APCS\Projects\WordAnalyzer\src" />
+      <recent name="C:\Users\aarya\Documents\AAP-CP\Git\APCS\Projects\WordClass\src" />
     </key>
   </component>
   <component name="RunManager">
     <configuration name="AnalyzerInterface" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="AnalyzerInterface" />
-      <module name="WordAnalyzer" />
+      <module name="WordClass" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -112,22 +115,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="342" y="8" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1579700020805" />
-    <state width="380" height="696" key="GridCell.Tab.0.bottom" timestamp="1579839799409">
+    <state width="767" height="769" key="GridCell.Tab.0.bottom" timestamp="1579891774730">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="380" height="696" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1579839799409" />
-    <state width="380" height="696" key="GridCell.Tab.0.center" timestamp="1579839799409">
+    <state width="767" height="769" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1579891774730" />
+    <state width="767" height="769" key="GridCell.Tab.0.center" timestamp="1579891774729">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="380" height="696" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1579839799409" />
-    <state width="380" height="696" key="GridCell.Tab.0.left" timestamp="1579839799408">
+    <state width="767" height="769" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1579891774729" />
+    <state width="767" height="769" key="GridCell.Tab.0.left" timestamp="1579891774729">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="380" height="696" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1579839799408" />
-    <state width="380" height="696" key="GridCell.Tab.0.right" timestamp="1579839799409">
+    <state width="767" height="769" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1579891774729" />
+    <state width="767" height="769" key="GridCell.Tab.0.right" timestamp="1579891774730">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="380" height="696" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1579839799409" />
+    <state width="767" height="769" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1579891774730" />
     <state width="380" height="696" key="GridCell.Tab.1.bottom" timestamp="1579839799409">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
