@@ -78,6 +78,10 @@ public class Word {
 			numReductions--;
 		}
 		
+		if (length() > 4 && substringEquals(r(3), "ages")) {
+			numReductions--;
+		}
+		
 		for (int i = 0; i < length(); i++) {
 			if (i < length() - 4) {
 				if (substringEquals(i, i + 4, "lize")) {
