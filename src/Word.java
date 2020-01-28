@@ -50,47 +50,54 @@ public class Word {
 		if (charAtEquals(r(0), 'e')
 				&& (!charAtEquals(r(1), 'l') || Word.isVowel(charAtReverse(2)))) {
 			numReductions++;
-		} else if (word.length() > 3 && (!charAtEquals(r(2), 'e') && !charAtEquals(r(2), 's') && substringEquals(r(1), "es")
+		} else if (length() > 3 && (!charAtEquals(r(2), 'e') && !charAtEquals(r(2), 's') && substringEquals(r(1), "es")
 				|| substringEquals(r(1), "ed") && !charAtEquals(r(2), 't')
 				&& !charAtEquals(r(2), 'd') && !substringEquals(r(3), r(1),  "br"))) {
 			numReductions++;
-		} else if (word.length() > 2 && (charAtEquals(r(1), 'a')
+		} else if (length() > 2 && (charAtEquals(r(1), 'a')
 				&& (charAtEquals(r(0), 'o') || charAtEquals(r(0), 'u')))) {
 			numReductions++;
-		} else if (word.length() > 2 && (Word.isVowel(charAtReverse(1)) && charAtEquals(r(0), 'y'))) {
+		} else if (length() > 2 && (Word.isVowel(charAtReverse(1)) && charAtEquals(r(0), 'y'))) {
 			numReductions++;
 		}
 		
-		if (word.length() > 3 && substringEquals(r(2), "ies")) {
+		if (length() > 3 && substringEquals(r(2), "ies")) {
 			numReductions--;
 		}
 		
-		if (word.length() > 2 && substringEquals(r(1), "sm")) {
+		if (length() > 2 && substringEquals(r(1), "sm")) {
 			numReductions--;
 		}
 		
-		if (word.length() > 3 && (!Word.isVowel(charAtReverse(3))) && (substringEquals(r(2), "les")
+		if (length() > 3 && (!Word.isVowel(charAtReverse(3))) && (substringEquals(r(2), "les")
 				|| substringEquals(r(2), "led"))) {
 			numReductions--;
 		}
 		
-		for (int i = 0; i < word.length(); i++) {
-			if (i < word.length() - 4) {
+		if (length() > 4 && substringEquals(r(3), "lier")) {
+			numReductions--;
+		}
+		
+		for (int i = 0; i < length(); i++) {
+			if (i < length() - 4) {
 				if (substringEquals(i, i + 4, "lize")) {
 					numReductions--;
 				}
 			}
 			
-			if (i < word.length() - 2 && word.length() > 3) {
+			if (i < length() - 3) {
+				if (substringEquals(i, i + 3, "ain")) {
+					numReductions--;
+				}
+			}
+			
+			if (i < length() - 2 && length() > 3) {
 				if (Word.isVowel(word.charAt(i)) && Word.isVowel(word.charAt(i + 1))) {
 					if (!(charAtEquals(i, 'i') && (charAtEquals(i + 1, 'a')
 							|| (charAtEquals(i + 1, 'o') && !charAtEquals(i - 1, 't')
 							&& !charAtEquals(i - 1, 'x') && !charAtEquals(i - 1, 'c')
 							&& !charAtEquals(i - 1, 's') || charAtEquals(i - 2, 'y'))))
 							&& (!charAtEquals(i, 'y') || (charAtEquals(i, 'y') && i == 0))) {
-						if(word.equals("cuddlier")) {
-							System.out.println(numReductions + " " + i);
-						}
 						numReductions++;
 					}
 				}
@@ -100,15 +107,11 @@ public class Word {
 		if (numReductions < 0)
 			numReductions = 0;
 		
-		if(word.equals("cuddlier")) {
-			System.out.println(numReductions);
-		}
-		
 		return numReductions;
 	}
 	
 	private boolean isValidIndex(int index) {
-		return index >= 0 && index < word.length();
+		return index >= 0 && index < length();
 	}
 	
 	private boolean charAtEquals(int index, char equals) {
@@ -124,7 +127,7 @@ public class Word {
 	}
 	
 	private int r(int index) {
-		return word.length() - (index + 1);
+		return length() - (index + 1);
 	}
 	
 	private char charAtReverse(int index) {
