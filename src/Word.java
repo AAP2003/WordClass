@@ -51,14 +51,18 @@ public class Word {
 				&& (!charAtEquals(r(1), 'l') || Word.isVowel(charAtReverse(2)))) {
 			numReductions++;
 		} else if (word.length() > 3 && (!charAtEquals(r(2), 'e') && !charAtEquals(r(2), 's') && substringEquals(r(1), "es")
-				|| substringEquals(r(1), "ed")
-				&& !charAtEquals(r(2), 't'))) {
+				|| substringEquals(r(1), "ed") && !charAtEquals(r(2), 't')
+				&& !charAtEquals(r(2), 'd') && !substringEquals(r(3), r(1),  "br"))) {
 			numReductions++;
 		} else if (word.length() > 2 && (charAtEquals(r(1), 'a')
 				&& (charAtEquals(r(0), 'o') || charAtEquals(r(0), 'u')))) {
 			numReductions++;
 		} else if (word.length() > 2 && (Word.isVowel(charAtReverse(1)) && charAtEquals(r(0), 'y'))) {
 			numReductions++;
+		}
+		
+		if (word.length() > 3 && substringEquals(r(2), "ies")) {
+			numReductions--;
 		}
 		
 		if (word.length() > 2 && substringEquals(r(1), "sm")) {
@@ -70,18 +74,34 @@ public class Word {
 			numReductions--;
 		}
 		
-		for (int i = 0; i < word.length() - 2; i++) {
-			if (Word.isVowel(word.charAt(i)) && Word.isVowel(word.charAt(i + 1))) {
-				if (word.length() > 3) {
+		for (int i = 0; i < word.length(); i++) {
+			if (i < word.length() - 4) {
+				if (substringEquals(i, i + 4, "lize")) {
+					numReductions--;
+				}
+			}
+			
+			if (i < word.length() - 2 && word.length() > 3) {
+				if (Word.isVowel(word.charAt(i)) && Word.isVowel(word.charAt(i + 1))) {
 					if (!(charAtEquals(i, 'i') && (charAtEquals(i + 1, 'a')
 							|| (charAtEquals(i + 1, 'o') && !charAtEquals(i - 1, 't')
 							&& !charAtEquals(i - 1, 'x') && !charAtEquals(i - 1, 'c')
 							&& !charAtEquals(i - 1, 's') || charAtEquals(i - 2, 'y'))))
 							&& (!charAtEquals(i, 'y') || (charAtEquals(i, 'y') && i == 0))) {
+						if(word.equals("cuddlier")) {
+							System.out.println(numReductions + " " + i);
+						}
 						numReductions++;
 					}
 				}
 			}
+		}
+		
+		if (numReductions < 0)
+			numReductions = 0;
+		
+		if(word.equals("cuddlier")) {
+			System.out.println(numReductions);
 		}
 		
 		return numReductions;
@@ -100,7 +120,7 @@ public class Word {
 	}
 	
 	private boolean substringEquals(int start_index, int end_index, String equals) {
-		return isValidIndex(start_index) && isValidIndex(end_index) && word.substring(start_index, end_index).equals(equals);
+		return isValidIndex(start_index) && isValidIndex(end_index - 1) && word.substring(start_index, end_index).equals(equals);
 	}
 	
 	private int r(int index) {

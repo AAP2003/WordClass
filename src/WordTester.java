@@ -31,8 +31,6 @@ public class WordTester {
 				if (error != 0) {
 					System.out.println("Error: " + error + "  Word: " + word.getWord());
 				}
-				//System.out.println("Predicted: " + word.getNumSyllables());
-				//System.out.println("Actual: " + temp[1] + "\n");
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
