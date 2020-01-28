@@ -2,9 +2,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class AnalyzerInterface {
+public class WordTester {
 
-	public AnalyzerInterface() {
+	public WordTester() {
 
 	}
 
@@ -27,7 +27,7 @@ public class AnalyzerInterface {
 			while (in.hasNext()) {
 				String temp[] = in.nextLine().split(" ");
 				Word word = new Word(temp[0]);
-				int error = Integer.parseInt(temp[1]) - word.getNumSyllables();
+				int error = Integer.parseInt(temp[1]) - word.countSyllables();
 				if (error != 0) {
 					System.out.println("Error: " + error + "  Word: " + word.getWord());
 				}

@@ -1,125 +1,113 @@
 public class Word {
-	private static final String[] patterns = {"V", "CV", "VC", "CVC", "CCV", "CCCV", "CVCC"};
-	private static final char[] vowels = {'a', 'e', 'i', 'o', 'u', 'y'};
-	private final String word;
-
+	int i = 0;
+	private String word;
+	
+	public Word() {
+		this.word = new String();
+	}
+	
 	public Word(String word) {
 		this.word = word.toLowerCase().trim();
 	}
-
+	
 	public Word(Word word) {
 		this.word = word.getWord().toLowerCase().trim();
 	}
-
+	
+	private static boolean isVowel(char c) {
+		return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' || c == 'y';
+	}
+	
+	public int length() {
+		return word.length();
+	}
+	
 	public String getWord() {
 		return word;
 	}
-
-	public int getNumSyllables() {
-		String CVword = new String(findVowels());
-
-		if (CVword.contains("C")) {
-			int syllables = 0;
-			syllables += (" " + CVword + " ").split("VC").length - 1;
- 			syllables += (" " + word + " ").split("ia").length - 1;
-			syllables += (" " + word + " ").split("eo").length - 1;
-			if ((word.length() >= 5 && word.substring(word.length() - 4).contentEquals("ious"))
-					|| (word.length() >= 4 && word.substring(word.length() - 3).contentEquals("ier")))
-				syllables++;
-
-			String lengthMinus2;
-			if (word.length() >= 2) {
-				lengthMinus2 = word.substring(word.length() - 2);
-			} else {
-				lengthMinus2 = "";
+	
+	public void setWord(String word) {
+		this.word = word;
+	}
+	
+	public int countSyllables() {
+		return Math.max(1, countVowels() - numReductions());
+	}
+	
+	private int countVowels() {
+		int count = 0;
+		for (char c : word.toCharArray()) {
+			if (Word.isVowel(c)) {
+				count++;
 			}
-			char charAtLengthMinus3;
-			if (word.length()>= 3) {
-				charAtLengthMinus3 = word.charAt(word.length() - 3);
-			} else {
-				charAtLengthMinus3 = ' ';
-			}
-			boolean lengthMinus4EqualsConstant;
-			if (word.length() >= 4) {
-				lengthMinus4EqualsConstant = CVword.charAt(word.length() - 4) == 'C';
-			} else {
-				lengthMinus4EqualsConstant = false;
-			}
-			if (word.length() > 3
-					&& lengthMinus2.contentEquals("ed")) {
-				syllables--;
-				if (charAtLengthMinus3 == 't')
-					syllables++;
-				if (charAtLengthMinus3 == 'd')
-					syllables++;
-				if (word.length() > 4
-						&& charAtLengthMinus3 == 'r'
-						&& word.charAt(word.length() - 4) != 'r'
-						&& lengthMinus4EqualsConstant)
-					syllables++;
-				if (word.length() > 4
-						&& charAtLengthMinus3 == 'l'
-						&& lengthMinus4EqualsConstant)
-					syllables++;
-			}
-
-			if (word.length() > 3
-					&& lengthMinus2.contentEquals("es")) {
-				syllables--;
-				for (char c : new char[]{'c', 'g', 'x', 's', 'z', 'i'}) {
-					if (charAtLengthMinus3 == c) {
-						syllables++;
-						break;
-					}
-				}
-				if (word.length() > 4
-						&& charAtLengthMinus3 == 'l'
-						&& lengthMinus4EqualsConstant)
-					syllables++;
-			}
-
-			syllables++;
-			if (CVword.charAt(word.length() - 1) == 'C')
-				syllables--;
-			if (word.length() > 1 && CVword.charAt(word.length() - 2) == 'C'
-					&& word.charAt(word.length() - 1) == 'e')
-				syllables--;
-
-			for (String disyllabic : new String[]{"EA", "II", "IO", "UA", "UO"}) {
-				if (word.length() > 1 && lengthMinus2.equals(disyllabic))
-					syllables--;
-			}
-
-			if (syllables < 1) syllables++;
-
-			return syllables;
-		} else {
-			return word.length();
 		}
+		return count;
 	}
-
-	public boolean patternMatch(String pattern, int startIndex, int length) {
-		return false;
-	}
-
-	public String toString() {
-		return "Word: " + word;
-	}
-
-	public char[] findVowels() {
-		char[] charWord = word.toLowerCase().toCharArray();
-		char[] out = new char[charWord.length];
-
-		for (int i = 0; i < charWord.length; i++) {
-			for (char v : vowels) {
-				if (charWord[i] == v) {
-					out[i] = 'V';
-					break;
-				} else {
-					out[i] = 'C';
+	
+	private int numReductions() {
+		int numReductions = 0;
+		
+		if (charAtEquals(r(0), 'e')
+				&& (!charAtEquals(r(1), 'l') || Word.isVowel(charAtReverse(2)))) {
+			numReductions++;
+		} else if (word.length() > 3 && (!charAtEquals(r(2), 'e') && !charAtEquals(r(2), 's') && substringEquals(r(1), "es")
+				|| substringEquals(r(1), "ed")
+				&& !charAtEquals(r(2), 't'))) {
+			numReductions++;
+		} else if (word.length() > 2 && (charAtEquals(r(1), 'a')
+				&& (charAtEquals(r(0), 'o') || charAtEquals(r(0), 'u')))) {
+			numReductions++;
+		} else if (word.length() > 2 && (Word.isVowel(charAtReverse(1)) && charAtEquals(r(0), 'y'))) {
+			numReductions++;
+		}
+		
+		if (word.length() > 2 && substringEquals(r(1), "sm")) {
+			numReductions--;
+		}
+		
+		if (word.length() > 3 && (!Word.isVowel(charAtReverse(3))) && (substringEquals(r(2), "les")
+				|| substringEquals(r(2), "led"))) {
+			numReductions--;
+		}
+		
+		for (int i = 0; i < word.length() - 2; i++) {
+			if (Word.isVowel(word.charAt(i)) && Word.isVowel(word.charAt(i + 1))) {
+				if ((word.length() > 3)
+						&& !(charAtEquals(i, 'i') && (charAtEquals(i + 1, 'a')
+						|| (charAtEquals(i + 1, 'o') && !charAtEquals(i - 1, 't')
+						&& !charAtEquals(i - 1, 'x') && !charAtEquals(i - 1, 'c')
+						&& !charAtEquals(i - 1, 's') || charAtEquals(i - 2, 'y'))))
+						&& (!charAtEquals(i, 'y') || (charAtEquals(i, 'y') && i == 0))) {
+					numReductions++;
+					
 				}
 			}
 		}
-		return out;
+		
+		return numReductions;
+	}
+	
+	private boolean isValidIndex(int index) {
+		return index >= 0 && index < word.length();
+	}
+	
+	private boolean charAtEquals(int index, char equals) {
+		return isValidIndex(index) && word.charAt(index) == equals;
+	}
+	
+	private boolean substringEquals(int start_index, String equals) {
+		return isValidIndex(start_index) && word.substring(start_index).equals(equals);
+	}
+	
+	private boolean substringEquals(int start_index, int end_index, String equals) {
+		return isValidIndex(start_index) && isValidIndex(end_index) && word.substring(start_index, end_index).equals(equals);
+	}
+	
+	private int r(int index) {
+		return word.length() - (index + 1);
+	}
+	
+	private char charAtReverse(int index) {
+		return word.charAt(r(index));
 	}
 }
