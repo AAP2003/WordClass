@@ -72,14 +72,14 @@ public class Word {
 		
 		for (int i = 0; i < word.length() - 2; i++) {
 			if (Word.isVowel(word.charAt(i)) && Word.isVowel(word.charAt(i + 1))) {
-				if ((word.length() > 3)
-						&& !(charAtEquals(i, 'i') && (charAtEquals(i + 1, 'a')
-						|| (charAtEquals(i + 1, 'o') && !charAtEquals(i - 1, 't')
-						&& !charAtEquals(i - 1, 'x') && !charAtEquals(i - 1, 'c')
-						&& !charAtEquals(i - 1, 's') || charAtEquals(i - 2, 'y'))))
-						&& (!charAtEquals(i, 'y') || (charAtEquals(i, 'y') && i == 0))) {
-					numReductions++;
-					
+				if (word.length() > 3) {
+					if (!(charAtEquals(i, 'i') && (charAtEquals(i + 1, 'a')
+							|| (charAtEquals(i + 1, 'o') && !charAtEquals(i - 1, 't')
+							&& !charAtEquals(i - 1, 'x') && !charAtEquals(i - 1, 'c')
+							&& !charAtEquals(i - 1, 's') || charAtEquals(i - 2, 'y'))))
+							&& (!charAtEquals(i, 'y') || (charAtEquals(i, 'y') && i == 0))) {
+						numReductions++;
+					}
 				}
 			}
 		}
