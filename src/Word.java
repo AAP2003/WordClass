@@ -50,6 +50,10 @@ public class Word {
 		if (charAtEquals(r(0), 'e')
 				&& (!charAtEquals(r(1), 'l') || Word.isVowel(charAtReverse(2)))) {
 			numReductions++;
+			
+			if (charAtEquals(r(1), 'y') && Word.isVowel(charAtReverse(2))) {
+				numReductions++;
+			}
 		} else if (length() > 3 && (!charAtEquals(r(2), 'e') && !charAtEquals(r(2), 's') && substringEquals(r(1), "es")
 				|| substringEquals(r(1), "ed") && !charAtEquals(r(2), 't')
 				&& !charAtEquals(r(2), 'd') && !substringEquals(r(3), r(1),  "br"))) {
@@ -91,6 +95,18 @@ public class Word {
 			
 			if (i < length() - 3) {
 				if (substringEquals(i, i + 3, "ain")) {
+					numReductions--;
+				}
+			}
+			
+			if (i < length() - 3) {
+				if (substringEquals(i, i + 3, "ope")) {
+					numReductions++;
+				}
+			}
+			
+			if (i < length() - 3) {
+				if (substringEquals(i, i + 3, "ole")) {
 					numReductions--;
 				}
 			}
