@@ -13,26 +13,15 @@ public class WordTester {
 			Scanner in = new Scanner(System.in);
 			String strWord;
 			Word word;
+			
+			System.out.println("Enter the word to count the syllables of (Press '0' to exit)");
+			
 			do {
 				strWord = in.next();
 			} while (strWord.isBlank());
 			if (strWord.contentEquals("0")) break;
 			word = new Word(strWord.trim());
-			System.out.println(word.countSyllables());
-		}
-
-		try {
-			Scanner in = new Scanner(new File("src\\tester.txt"));
-			while (in.hasNext()) {
-				String temp[] = in.nextLine().split(" ");
-				Word word = new Word(temp[0]);
-				int error = Integer.parseInt(temp[1]) - word.countSyllables();
-				if (error != 0) {
-					System.out.println("Error: " + error + "  Word: " + word.getWord());
-				}
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.out.println(word.toString());
 		}
 	}
 }

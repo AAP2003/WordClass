@@ -111,6 +111,12 @@ public class Word {
 				}
 			}
 			
+			if (i < length() - 4) {
+				if (substringEquals(i, i + 4, "take")) {
+					numReductions++;
+				}
+			}
+			
 			if (i < length() - 2 && length() > 3) {
 				if (Word.isVowel(word.charAt(i)) && Word.isVowel(word.charAt(i + 1))) {
 					if (!(charAtEquals(i, 'i') && (charAtEquals(i + 1, 'a')
@@ -144,6 +150,10 @@ public class Word {
 	
 	private boolean substringEquals(int start_index, int end_index, String equals) {
 		return isValidIndex(start_index) && isValidIndex(end_index - 1) && word.substring(start_index, end_index).equals(equals);
+	}
+	
+	public String toString() {
+		return "Word: " + getWord() + "\n# of Syllables: " + countSyllables() + "\n";
 	}
 	
 	private int r(int index) {
